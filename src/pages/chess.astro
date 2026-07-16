@@ -3,10 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import TestimonialList from "../components/TestimonialList.astro";
 import { chessTestimonials } from "../data/testimonials";
 
-// TODO(Marc): swap in your real lichess profile URL.
-const LICHESS_URL = "https://lichess.org/@/REPLACE_ME";
+const LICHESS_URL = "https://lichess.org/@/MarcKrev";
 
-// TODO(Marc): decide public vs. on-request, then set this and fill in real numbers below.
+// Decided: rates are on-request, not published publicly.
 const RATES_ARE_PUBLIC = false;
 ---
 
@@ -23,25 +22,28 @@ const RATES_ARE_PUBLIC = false;
 	<section class="section" aria-label="How lessons work">
 		<h2 class="section-heading">How lessons work</h2>
 		<div class="post-list">
-			<div class="post-card">
+			<div class="info-card">
 				<div class="post-body">
 					<h3>1. Book a time</h3>
 					<p>Reach out through the contact form with your availability and current level.</p>
 				</div>
 			</div>
-			<div class="post-card">
+			<div class="info-card">
 				<div class="post-body">
 					<h3>2. First session</h3>
 					<p>We start with a quick assessment so lessons target what will actually improve your game.</p>
 				</div>
 			</div>
-			<div class="post-card">
+			<div class="info-card">
 				<div class="post-body">
 					<h3>3. Ongoing coaching</h3>
 					<p>Recurring sessions covering openings, tactics, endgames, and reviewing your own games.</p>
 				</div>
 			</div>
 		</div>
+		<p style="margin-top: 24px;">
+			<a class="btn btn-lg" href="/contact?intent=chess">Book a lesson</a>
+		</p>
 	</section>
 
 	<section class="section" aria-label="Lichess profile">
@@ -63,9 +65,5 @@ const RATES_ARE_PUBLIC = false;
 	<section class="section" aria-label="Testimonials">
 		<h2 class="section-heading">What students say</h2>
 		<TestimonialList items={chessTestimonials} />
-	</section>
-
-	<section class="section" aria-label="Book a lesson">
-		<a class="btn" href="/contact?intent=chess">Book a lesson</a>
 	</section>
 </Layout>

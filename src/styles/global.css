@@ -216,7 +216,8 @@ main {
   gap: 16px;
 }
 
-.post-card {
+.post-card,
+.info-card {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--grey-3);
@@ -226,33 +227,39 @@ main {
   transition: border-color 0.15s, transform 0.15s;
 }
 
+/* .info-card is the same shape as .post-card but for non-clickable
+   content — no hover treatment, so it doesn't look interactive. */
 .post-card:hover {
   border-color: var(--accent);
   transform: translateY(-2px);
 }
 
-.post-card img {
+.post-card img,
+.info-card img {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border-bottom: 1px solid var(--grey-3);
 }
 
-.post-card .post-body {
+.post-card .post-body,
+.info-card .post-body {
   padding: 20px 24px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.post-card h3 {
+.post-card h3,
+.info-card h3 {
   font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   margin-bottom: 6px;
 }
 
-.post-card p {
+.post-card p,
+.info-card p {
   font-size: 0.9rem;
   color: var(--grey-1);
 }
@@ -415,6 +422,11 @@ main {
 }
 
 .btn:hover { opacity: 0.85; }
+
+.btn-lg {
+  font-size: 1.05rem;
+  padding: 16px 32px;
+}
 
 .form-note {
   font-size: 0.85rem;

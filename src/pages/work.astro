@@ -10,11 +10,10 @@ const rendered = await Promise.all(
 	caseStudies.map(async (entry) => ({ entry, Content: (await render(entry)).Content })),
 );
 
-// TODO(Marc): swap in your real profile URLs.
-const GITHUB_URL = "https://github.com/REPLACE_ME";
-const LINKEDIN_URL = "https://www.linkedin.com/in/REPLACE_ME";
+const GITHUB_URL = "https://github.com/MarcRK";
+const LINKEDIN_URL = "https://www.linkedin.com/in/marckrevitz/";
 
-// TODO(Marc): drop your résumé PDF into public/resume.pdf — this link points there.
+// TODO(Marc): drop your resume PDF into public/resume.pdf — this link points there.
 const RESUME_URL = "/resume.pdf";
 ---
 
@@ -31,7 +30,7 @@ const RESUME_URL = "/resume.pdf";
 	<section class="section" aria-label="Case studies">
 		<h2 class="section-heading">Case studies</h2>
 		{rendered.map(({ entry, Content }) => (
-			<article class="post-card" style="margin-bottom: 16px;">
+			<article class="info-card" style="margin-bottom: 16px;">
 				<div class="post-body">
 					<h3>{entry.data.title}</h3>
 					{entry.data.skills && entry.data.skills.length > 0 && (
@@ -48,12 +47,12 @@ const RESUME_URL = "/resume.pdf";
 	<section class="section" aria-label="Projects">
 		<h2 class="section-heading">Projects</h2>
 		<div class="post-list">
-			<div class="post-card">
+			<div class="info-card">
 				<div class="post-body">
 					<h3>This website</h3>
 					<p>
 						A static site built with Astro, using content collections so new furniture and tech
-						project posts are just a Markdown file each. Deployed via Netlify, auto-deploying from
+						project posts are just a Markdown file each. Deployed via Cloudflare, auto-deploying from
 						GitHub.
 					</p>
 				</div>
@@ -69,21 +68,21 @@ const RESUME_URL = "/resume.pdf";
 	<section class="section" aria-label="Links">
 		<h2 class="section-heading">Links</h2>
 		<div class="post-list">
-			<div class="post-card">
+			<div class="info-card">
 				<div class="post-body">
-					<h3>Résumé</h3>
-					<p>Download a copy of my résumé.</p>
-					<a class="btn" href={RESUME_URL}>Download résumé (PDF)</a>
+					<h3>Resume</h3>
+					<p>Download a copy of my resume.</p>
+					<a class="btn" href={RESUME_URL}>Download resume (PDF)</a>
 				</div>
 			</div>
-			<div class="post-card">
+			<div class="info-card">
 				<div class="post-body">
 					<h3>GitHub</h3>
 					<p>Code and open-source contributions.</p>
 					<a class="go" href={GITHUB_URL}>View GitHub →</a>
 				</div>
 			</div>
-			<div class="post-card">
+			<div class="info-card">
 				<div class="post-body">
 					<h3>LinkedIn</h3>
 					<p>Professional background and history.</p>

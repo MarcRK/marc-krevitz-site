@@ -12,14 +12,25 @@ const {
 } = Astro.props;
 
 const navItems = [
+	{ href: "/work", label: "Work" },
 	{ href: "/furniture", label: "Furniture" },
 	{ href: "/tech-projects", label: "Tech Projects" },
 	{ href: "/chess", label: "Chess" },
-	{ href: "/work", label: "Work" },
 ];
 
 const path = Astro.url.pathname;
 const isCurrent = (href: string) => path === href || path.startsWith(href + "/");
+
+const footerIntent = path.startsWith("/furniture")
+	? "furniture"
+	: path.startsWith("/tech-projects")
+		? "tech"
+		: path.startsWith("/chess")
+			? "chess"
+			: path.startsWith("/work")
+				? "professional"
+				: null;
+const contactHref = footerIntent ? `/contact?intent=${footerIntent}` : "/contact";
 ---
 
 <!doctype html>
@@ -65,7 +76,7 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + "/")
 		<footer>
 			<div class="footer-inner">
 				<span>© 2026 Marc Krevitz</span>
-				<a href="/contact">Get in touch</a>
+				<a href={contactHref}>Get in touch</a>
 			</div>
 		</footer>
 
