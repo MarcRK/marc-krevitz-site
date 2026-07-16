@@ -1,0 +1,39 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+	const reviews = await getCollection(
+		"techReviews",
+		({ data }) => import.meta.env.DEV || !data.draft,
+	);
+	return reviews.map((review) => ({
+		params: { slug: review.id },
+		props: review,
+	}));
+}
+
+const review = Astro.props;
+const { Content } = await render(review);
+const dateLabel = review.data.date.toLocaleDateString("en-US", {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+	timeZone: "UTC",
+});
+---
+
+<Layout title={`${review.data.title} — Marc Krevitz`} description={review.data.summary}>
+	<article class="article">
+		<a class="back-link" href="/tech-projects">← Back to Tech Projects</a>
+		<header>
+			<span class="mono">{review.data.product}</span>
+			<h1 class="article-title">{review.data.title}</h1>
+			<p class="article-meta">{dateLabel}</p>
+		</header>
+
+		<div class="prose">
+			<Content />
+		</div>
+	</article>
+</Layout>

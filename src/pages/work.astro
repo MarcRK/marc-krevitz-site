@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+const caseStudies = (
+	await getCollection("work", ({ data }) => import.meta.env.DEV || !data.draft)
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const rendered = await Promise.all(
+	caseStudies.map(async (entry) => ({ entry, Content: (await render(entry)).Content })),
+);
+
+// TODO(Marc): swap in your real profile URLs.
+const GITHUB_URL = "https://github.com/REPLACE_ME";
+const LINKEDIN_URL = "https://www.linkedin.com/in/REPLACE_ME";
+
+// TODO(Marc): drop your résumé PDF into public/resume.pdf — this link points there.
+const RESUME_URL = "/resume.pdf";
+---
+
+<Layout
+	title="Professional Work — Marc Krevitz"
+	description="Case studies, projects, and skills from four years in the tech industry."
+>
+	<section class="page-header">
+		<span class="mono">Work</span>
+		<h1>Professional Work</h1>
+		<p>Case studies from four years in the tech industry, anonymized where they're tied to a prior employer.</p>
+	</section>
+
+	<section class="section" aria-label="Case studies">
+		<h2 class="section-heading">Case studies</h2>
+		{rendered.map(({ entry, Content }) => (
+			<article class="post-card" style="margin-bottom: 16px;">
+				<div class="post-body">
+					<h3>{entry.data.title}</h3>
+					{entry.data.skills && entry.data.skills.length > 0 && (
+						<p class="mono">{entry.data.skills.join(" · ")}</p>
+					)}
+					<div class="prose">
+						<Content />
+					</div>
+				</div>
+			</article>
+		))}
+	</section>
+
+	<section class="section" aria-label="Projects">
+		<h2 class="section-heading">Projects</h2>
+		<div class="post-list">
+			<div class="post-card">
+				<div class="post-body">
+					<h3>This website</h3>
+					<p>
+						A static site built with Astro, using content collections so new furniture and tech
+						project posts are just a Markdown file each. Deployed via Netlify, auto-deploying from
+						GitHub.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" aria-label="Skills">
+		<h2 class="section-heading">Skills</h2>
+		<p class="mono">[Draft — TODO(Marc): list your core skills/tools here, e.g. "Python · SQL · Automation · Linux".]</p>
+	</section>
+
+	<section class="section" aria-label="Links">
+		<h2 class="section-heading">Links</h2>
+		<div class="post-list">
+			<div class="post-card">
+				<div class="post-body">
+					<h3>Résumé</h3>
+					<p>Download a copy of my résumé.</p>
+					<a class="btn" href={RESUME_URL}>Download résumé (PDF)</a>
+				</div>
+			</div>
+			<div class="post-card">
+				<div class="post-body">
+					<h3>GitHub</h3>
+					<p>Code and open-source contributions.</p>
+					<a class="go" href={GITHUB_URL}>View GitHub →</a>
+				</div>
+			</div>
+			<div class="post-card">
+				<div class="post-body">
+					<h3>LinkedIn</h3>
+					<p>Professional background and history.</p>
+					<a class="go" href={LINKEDIN_URL}>View LinkedIn →</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

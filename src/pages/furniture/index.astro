@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PostCard from "../../components/PostCard.astro";
+import TestimonialList from "../../components/TestimonialList.astro";
+import { getCollection } from "astro:content";
+import { furnitureTestimonials } from "../../data/testimonials";
+
+const posts = (
+	await getCollection("furniture", ({ data }) => import.meta.env.DEV || !data.draft)
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title="Furniture — Marc Krevitz" description="Furniture refurbishment projects and honest reviews.">
+	<section class="page-header">
+		<span class="mono">Furniture</span>
+		<h1>Refurbishment projects &amp; reviews</h1>
+		<p>Before/after project logs, what was done, and an honest take on how each piece turned out.</p>
+	</section>
+
+	<section class="section" aria-label="Projects">
+		<h2 class="section-heading">Projects</h2>
+		<div class="post-list">
+			{posts.map((post) => (
+				<PostCard
+					href={`/furniture/${post.id}/`}
+					title={post.data.title}
+					summary={post.data.summary}
+					image={post.data.images?.[0]}
+				/>
+			))}
+		</div>
+	</section>
+
+	<section class="section" aria-label="Reviews">
+		<h2 class="section-heading">Reviews</h2>
+		<TestimonialList items={furnitureTestimonials} />
+	</section>
+</Layout>

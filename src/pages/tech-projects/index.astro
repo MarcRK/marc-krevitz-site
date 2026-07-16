@@ -1,0 +1,52 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PostCard from "../../components/PostCard.astro";
+import { getCollection } from "astro:content";
+
+const projects = (
+	await getCollection("techProjects", ({ data }) => import.meta.env.DEV || !data.draft)
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const reviews = (
+	await getCollection("techReviews", ({ data }) => import.meta.env.DEV || !data.draft)
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout
+	title="Tech Projects — Marc Krevitz"
+	description="The Bench: tech refurbishment, DIY audio builds, and headphone/IEM reviews."
+>
+	<section class="page-header">
+		<span class="mono">Tech Projects</span>
+		<h1>The Bench</h1>
+		<p>What came in, what was wrong with it, what got fixed or built, and how it turned out.</p>
+	</section>
+
+	<section class="section" aria-label="Projects">
+		<h2 class="section-heading">Projects</h2>
+		<div class="post-list">
+			{projects.map((project) => (
+				<PostCard
+					href={`/tech-projects/${project.id}/`}
+					title={project.data.title}
+					summary={project.data.summary}
+					image={project.data.images?.[0]}
+				/>
+			))}
+		</div>
+	</section>
+
+	<section class="section" aria-label="Reviews">
+		<h2 class="section-heading">Reviews</h2>
+		<div class="post-list">
+			{reviews.map((review) => (
+				<PostCard
+					href={`/tech-projects/reviews/${review.id}/`}
+					title={review.data.title}
+					summary={review.data.summary}
+					ctaLabel="Read review →"
+				/>
+			))}
+		</div>
+	</section>
+</Layout>

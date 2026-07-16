@@ -1,0 +1,18 @@
+---
+import type { Testimonial } from "../data/testimonials";
+
+interface Props {
+	items: Testimonial[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="testimonial-list">
+	{items.map((item) => (
+		<blockquote class="testimonial">
+			<p>“{item.quote}”</p>
+			<span class="mono">{item.source}</span>
+		</blockquote>
+	))}
+</div>

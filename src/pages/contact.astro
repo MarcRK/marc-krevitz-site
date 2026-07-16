@@ -1,0 +1,63 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// TODO(Marc): swap in your real Formspree endpoint once the account exists.
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/REPLACE_ME";
+---
+
+<Layout title="Contact — Marc Krevitz" description="Get in touch about furniture, chess lessons, professional work, or anything else.">
+	<section class="page-header">
+		<span class="mono">Contact</span>
+		<h1>Get in touch</h1>
+		<p>Furniture questions, chess lessons, professional inquiries, or anything else — use the form below.</p>
+	</section>
+
+	<section class="section" style="max-width: 560px;">
+		<form action={FORMSPREE_ENDPOINT} method="POST" id="contact-form">
+			<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+			<div class="field">
+				<label for="name">Name</label>
+				<input type="text" id="name" name="name" required autocomplete="name" />
+			</div>
+
+			<div class="field">
+				<label for="email">Email</label>
+				<input type="email" id="email" name="email" required autocomplete="email" />
+			</div>
+
+			<div class="field">
+				<label for="intent">What's this about?</label>
+				<select id="intent" name="intent" required>
+					<option value="Furniture">Furniture</option>
+					<option value="Chess Lessons">Chess Lessons</option>
+					<option value="Professional">Professional</option>
+					<option value="Other">Other</option>
+				</select>
+			</div>
+
+			<div class="field">
+				<label for="message">Message</label>
+				<textarea id="message" name="message" required></textarea>
+			</div>
+
+			<button class="btn" type="submit">Send message</button>
+			<p class="form-note">This form sends directly to my inbox via Formspree — no account or sign-in needed.</p>
+		</form>
+	</section>
+
+	<script>
+		const params = new URLSearchParams(window.location.search);
+		const intentParam = params.get("intent")?.toLowerCase();
+		const intentMap: Record<string, string> = {
+			furniture: "Furniture",
+			chess: "Chess Lessons",
+			professional: "Professional",
+			other: "Other",
+		};
+		if (intentParam && intentMap[intentParam]) {
+			const select = document.getElementById("intent") as HTMLSelectElement | null;
+			if (select) select.value = intentMap[intentParam];
+		}
+	</script>
+</Layout>

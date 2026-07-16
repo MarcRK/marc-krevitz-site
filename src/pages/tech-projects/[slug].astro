@@ -1,0 +1,41 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+	const projects = await getCollection(
+		"techProjects",
+		({ data }) => import.meta.env.DEV || !data.draft,
+	);
+	return projects.map((project) => ({
+		params: { slug: project.id },
+		props: project,
+	}));
+}
+
+const project = Astro.props;
+const { Content } = await render(project);
+const dateLabel = project.data.date.toLocaleDateString("en-US", {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+	timeZone: "UTC",
+});
+---
+
+<Layout title={`${project.data.title} — Marc Krevitz`} description={project.data.summary}>
+	<article class="article">
+		<a class="back-link" href="/tech-projects">← Back to Tech Projects</a>
+		<header>
+			<span class="mono">{project.data.category}</span>
+			<h1 class="article-title">{project.data.title}</h1>
+			<p class="article-meta">{dateLabel}</p>
+		</header>
+
+		{project.data.images?.map((image) => <img src={image.src} alt={image.alt} />)}
+
+		<div class="prose">
+			<Content />
+		</div>
+	</article>
+</Layout>

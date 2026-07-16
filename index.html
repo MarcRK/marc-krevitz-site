@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marc Krevitz — Furniture · Tech Projects · Chess · Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0A0A0A;
+    --paper: #FAFAFA;
+    --grey-1: #555555;   /* secondary text */
+    --grey-2: #9A9A9A;   /* tertiary text, mono labels */
+    --grey-3: #E2E2E2;   /* borders */
+    --accent: #7EB8DA;   /* hover + focus only */
+    --radius: 6px;
+    --max: 1080px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "IBM Plex Sans", -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mono {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ---------- Nav ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--grey-3);
+    z-index: 10;
+  }
+
+  .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .wordmark {
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+    color: var(--grey-1);
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  nav a:hover {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+  }
+
+  .menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid var(--grey-3);
+    border-radius: var(--radius);
+    padding: 8px 10px;
+    cursor: pointer;
+    color: var(--ink);
+  }
+
+  .menu-btn:hover { border-color: var(--accent); }
+
+  /* ---------- Hero ---------- */
+  main {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .hero {
+    padding: 96px 0 72px;
+    max-width: 640px;
+  }
+
+  .hero .mono { display: block; margin-bottom: 20px; }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .hero .tagline {
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .hero .bio {
+    font-size: 1rem;
+    color: var(--grey-1);
+  }
+
+  /* ---------- Bento grid ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding-bottom: 96px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    padding: 24px;
+    border: 1px solid var(--grey-3);
+    border-radius: var(--radius);
+    background: #FFFFFF;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .card h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    color: var(--grey-1);
+  }
+
+  .card .go {
+    margin-top: auto;
+    padding-top: 20px;
+    font-size: 0.85rem;
+    color: var(--grey-2);
+    transition: color 0.15s;
+  }
+
+  .card:hover .go { color: var(--accent); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--grey-3);
+  }
+
+  .footer-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 32px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--grey-1);
+  }
+
+  .footer-inner a {
+    border-bottom: 1px solid var(--grey-3);
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .footer-inner a:hover {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1000px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .menu-btn { display: block; }
+
+    nav {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--grey-3);
+    }
+
+    nav.open { display: block; }
+
+    nav ul {
+      flex-direction: column;
+      gap: 0;
+      padding: 8px 24px 16px;
+    }
+
+    nav li { border-bottom: 1px solid var(--grey-3); }
+    nav li:last-child { border-bottom: none; }
+    nav a { display: block; padding: 14px 0; }
+
+    .hero { padding: 64px 0 48px; }
+  }
+
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    .card { min-height: 160px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="#" class="wordmark">Marc Krevitz</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="site-nav" onclick="toggleMenu(this)">Menu</button>
+    <nav id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="#furniture">Furniture</a></li>
+        <li><a href="#tech-projects">Tech Projects</a></li>
+        <li><a href="#chess">Chess</a></li>
+        <li><a href="#work">Work</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <span class="mono">Workshop · Board · Codebase</span>
+    <h1>Marc Krevitz</h1>
+    <p class="tagline">A tech specialist with too many hobbies.</p>
+    <p class="bio">I've spent four years in the tech industry and most of my life falling down hobby rabbit holes. The current rotation: refurbishing vintage tech, restoring furniture, and DIY audio. I've also coached chess for five years. Everything here is something I make, fix, teach, or review.</p>
+  </section>
+
+  <section class="grid" aria-label="Site sections">
+    <a class="card" href="#furniture">
+      <h2>Furniture</h2>
+      <p>Refurbishment projects and honest reviews.</p>
+      <span class="go">View projects &amp; reviews →</span>
+    </a>
+    <a class="card" href="#tech-projects">
+      <h2>Tech Projects</h2>
+      <p>Tech refurbishment and other DIY projects.</p>
+      <span class="go">View the Bench →</span>
+    </a>
+    <a class="card" href="#chess">
+      <h2>Chess</h2>
+      <p>Coaching and lessons for players of all skill levels.</p>
+      <span class="go">Book a lesson →</span>
+    </a>
+    <a class="card" href="#work">
+      <h2>Professional Work</h2>
+      <p>Automation, software, and IT projects.</p>
+      <span class="go">View work →</span>
+    </a>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 Marc Krevitz</span>
+    <a href="#contact">Get in touch</a>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(btn) {
+    const nav = document.getElementById('site-nav');
+    const open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+---
+interface Props {
+	href: string;
+	title: string;
+	summary: string;
+	ctaLabel?: string;
+	image?: { src: string; alt: string };
+}
+
+const { href, title, summary, ctaLabel = "Read more →", image } = Astro.props;
+---
+
+<a class="post-card" href={href}>
+	{image && <img src={image.src} alt={image.alt} loading="lazy" />}
+	<div class="post-body">
+		<h3>{title}</h3>
+		<p>{summary}</p>
+		<span class="go">{ctaLabel}</span>
+	</div>
+</a>
