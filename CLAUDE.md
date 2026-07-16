@@ -79,6 +79,42 @@ Extract header/nav/footer into a shared layout used by all pages.
 Every page launches thin with real content rather than "coming soon" walls.
 Create one example post per collection so Marc can see the Markdown format.
 
+## Build status
+
+Scaffolded and committed (first commit `1c79a90`): Astro project, shared
+`Layout.astro`, global stylesheet, four content collections (`furniture`,
+`techProjects`, `techReviews`, `work`), and all five pages. Each collection
+has one `draft: true` example post (clearly flagged as a placeholder, not
+real content) so Marc can see the Markdown format — drafts render in
+`npm run dev` but are excluded from production builds.
+
+Node.js is installed at `C:\Program Files\nodejs\` (v24), but an old bundled
+Node from Box Edit (v18.12.1) sits earlier on PATH and shadows it. The dev
+server launches via `.claude/dev.cmd`, which prepends the real Node dir to
+PATH before running `npm run dev` — needed because `.claude/launch.json`'s
+`runtimeExecutable` alone wasn't enough to avoid the shadowed version.
+
+### Placeholder constants awaiting Marc's real values
+
+- `src/pages/contact.astro` — `FORMSPREE_ENDPOINT` (needs the Formspree account).
+- `src/pages/chess.astro` — `LICHESS_URL`, and `RATES_ARE_PUBLIC` (still
+  undecided — currently defaults to on-request).
+- `src/pages/work.astro` — `GITHUB_URL`, `LINKEDIN_URL`, `RESUME_URL` (needs
+  `public/resume.pdf` added), and the skills line (marked `[DRAFT]` inline).
+- `src/data/testimonials.ts` — `furnitureTestimonials` and `chessTestimonials`
+  are single placeholder quotes; needs Marc's real Marketplace/student quotes.
+
+### Real content still needed (don't invent — ask Marc for raw material)
+
+- Furniture: the Reddit refurbishment post to convert, one full review,
+  Marketplace testimonial quotes.
+- Tech Projects: custom headphones build write-up, Game Boy SP refurb
+  (before/after + photos), iPod refurb (before/after + photos).
+- Chess: real lichess URL, real student testimonials, rates decision.
+- Work: real anonymized case studies, skills list, résumé PDF, GitHub/LinkedIn URLs.
+- No photos exist yet for any collection — `images` front-matter fields are
+  optional and unused so far; photos go in `public/images/<collection>/`.
+
 ## Not yet done (don't assume)
 
 - No domain purchased yet. No Formspree account yet. GitHub account is
