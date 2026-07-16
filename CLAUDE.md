@@ -14,7 +14,13 @@ steps as you go, especially git, deploys, and anything terminal-related.
   with front-matter (title, date, category, images). This is the core
   requirement — Marc will update the site regularly and the per-post friction
   must stay near zero.
-- Git from day one. Deploy target: **Netlify auto-deploy from GitHub**.
+- Git from day one. Deploy target: **Cloudflare (Workers static assets)
+  auto-deploy from GitHub** — switched from an initial Netlify plan. Uses
+  Cloudflare's newer Git-connected Workers Builds flow, not the classic
+  "Pages" product; needs `wrangler.jsonc` at repo root (build command
+  `npm run build`, deploy command `npx wrangler deploy`, assets directory
+  `./dist`). Pairs with Cloudflare Registrar for the domain in one account.
+  Domain: **marckrevitz.com**.
 - Contact form posts to a **Formspree** endpoint (placeholder until Marc
   creates the account; make it one obvious constant to swap).
 
@@ -117,6 +123,9 @@ PATH before running `npm run dev` — needed because `.claude/launch.json`'s
 
 ## Not yet done (don't assume)
 
-- No domain purchased yet. No Formspree account yet. GitHub account is
-  brand new and empty. Netlify not set up. Walk Marc through each when
-  the build reaches that step.
+- GitHub repo created and code pushed (`github.com/MarcRK/marc-krevitz-site`,
+  `main` branch). Cloudflare deploy is mid-setup: `wrangler.jsonc` is in the
+  repo and Marc is connecting the repo in the Cloudflare dashboard. Domain
+  marckrevitz.com not purchased yet. No Formspree account yet. Walk Marc
+  through each remaining step. Note: Claude cannot create accounts, enter
+  payment details, or execute purchases — Marc does those steps himself.
