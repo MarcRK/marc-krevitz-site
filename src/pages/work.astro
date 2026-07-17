@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import PostCard from "../components/PostCard.astro";
 import { getCollection, render } from "astro:content";
 
 const caseStudies = (
@@ -24,7 +25,7 @@ const RESUME_URL = "/resume.pdf";
 	<section class="page-header">
 		<span class="mono">Work</span>
 		<h1>Professional Work</h1>
-		<p>Case studies from four years in the tech industry, anonymized where they're tied to a prior employer.</p>
+		<p>Anonymized where they're tied to a prior employer.</p>
 	</section>
 
 	<section class="section" aria-label="Case studies">
@@ -47,16 +48,12 @@ const RESUME_URL = "/resume.pdf";
 	<section class="section" aria-label="Projects">
 		<h2 class="section-heading">Projects</h2>
 		<div class="post-list">
-			<div class="info-card">
-				<div class="post-body">
-					<h3>This website</h3>
-					<p>
-						A static site built with Astro, using content collections so new furniture and tech
-						project posts are just a Markdown file each. Deployed via Cloudflare, auto-deploying from
-						GitHub.
-					</p>
-				</div>
-			</div>
+			<PostCard
+				href="/about"
+				title="This website"
+				summary="A static site built with Astro, using content collections so new furniture and tech project posts are just a Markdown file each. Deployed via Cloudflare, auto-deploying from GitHub."
+				ctaLabel="About this site →"
+			/>
 		</div>
 	</section>
 

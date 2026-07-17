@@ -6,40 +6,100 @@ import Layout from "../layouts/Layout.astro";
 	title="About this site — Marc Krevitz"
 	description="How this site was built, and what it's built with."
 >
-	<article class="article">
+	<article class="article about-article">
 		<a class="back-link" href="/">← Back home</a>
 		<header>
-			<span class="mono">Meta</span>
+			<span class="mono">About</span>
 			<h1 class="article-title">About this site</h1>
 		</header>
 
-		<div class="prose">
-			<p>
-				This site is built with <a href="https://astro.build">Astro</a>, a framework built for
-				content-heavy sites like this one. Pages ship as plain HTML and CSS — there's no
-				client-side framework running in the background, so there's very little for a visitor's
-				browser to load.
-			</p>
-			<p>
-				Furniture, Tech Projects, and Work entries are Astro <strong>content collections</strong>:
-				each post is a single Markdown file with a little front-matter (title, date, category).
-				Adding a new post means writing a Markdown file, not touching any code.
-			</p>
-			<p>
-				The design is hand-built to match an approved mockup — no page-builder or template.
-				Type is set in <a href="https://fonts.google.com/specimen/IBM+Plex+Sans">IBM Plex Sans</a> and <a href="https://fonts.google.com/specimen/IBM+Plex+Mono">IBM Plex Mono</a>.
-			</p>
-			<p>
-				It's hosted on <a href="https://www.cloudflare.com/">Cloudflare</a> (Workers static assets), auto-deploying from a <a href="https://github.com/MarcRK/marc-krevitz-site">GitHub repo</a> on every push.
-				The domain is registered through Cloudflare too. The contact form is
-				handled by <a href="https://formspree.io">Formspree</a>, since a static site has no
-				server of its own to receive form submissions.
-			</p>
-			<p>
-				I built it with <a href="https://claude.com/claude-code">Claude Code</a>, Anthropic's AI
-				coding assistant — pairing on everything from the initial scaffold to deploy
-				configuration and content structure.
-			</p>
+		<div class="about-layout">
+			<div class="prose">
+				<p>
+					This site is built with <a href="https://astro.build">Astro</a>. Pages ship as plain HTML and CSS and there's no client-side framework running in the background, so there's very little for a visitor's browser to load.
+				</p>
+				<p>
+					My entries are all Astro content collections: each post is a single Markdown file with a little front-matter (title/date/category). Adding a new post just means writing a Markdown file.
+				</p>
+				<p>
+					The design is hand-built to match an approved mockup. Type is set in <a href="https://fonts.google.com/specimen/IBM+Plex+Sans">IBM Plex Sans</a> and <a href="https://fonts.google.com/specimen/IBM+Plex+Mono">IBM Plex Mono</a>.
+				</p>
+				<p>
+					It's hosted on <a href="https://www.cloudflare.com/">Cloudflare</a> (Workers static assets), auto-deploying from a <a href="https://github.com/MarcRK/marc-krevitz-site">GitHub repo</a> on every push. The domain is registered through Cloudflare too. The contact form is handled by <a href="https://formspree.io">Formspree</a>, since a static site has no server of its own to receive form submissions.
+				</p>
+			</div>
+
+			<aside class="about-links" aria-label="Built with">
+				<span class="mono">Built with</span>
+				<ul>
+					<li><a href="https://astro.build">Astro</a></li>
+					<li><a href="https://www.cloudflare.com/">Cloudflare</a></li>
+					<li><a href="https://formspree.io">Formspree</a></li>
+					<li><a href="https://fonts.google.com/specimen/IBM+Plex+Sans">IBM Plex Sans</a></li>
+					<li><a href="https://fonts.google.com/specimen/IBM+Plex+Mono">IBM Plex Mono</a></li>
+				</ul>
+			</aside>
 		</div>
 	</article>
 </Layout>
+
+<style>
+	.about-article {
+		max-width: 960px;
+	}
+
+	.about-layout {
+		display: grid;
+		grid-template-columns: 1fr 200px;
+		gap: 48px;
+		align-items: start;
+	}
+
+	.about-links {
+		border-left: 1px solid var(--grey-3);
+		padding-left: 32px;
+	}
+
+	.about-links .mono {
+		display: block;
+		margin-bottom: 16px;
+	}
+
+	.about-links ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.about-links a {
+		display: block;
+		font-size: 0.9rem;
+		padding: 10px 0;
+		border-bottom: 1px solid var(--grey-3);
+		color: var(--ink);
+		transition: color 0.15s, border-color 0.15s;
+	}
+
+	.about-links li:last-child a {
+		border-bottom: none;
+	}
+
+	.about-links a:hover {
+		color: var(--accent);
+		border-bottom-color: var(--accent);
+	}
+
+	@media (max-width: 768px) {
+		.about-layout {
+			grid-template-columns: 1fr;
+		}
+
+		.about-links {
+			border-left: none;
+			border-top: 1px solid var(--grey-3);
+			padding-left: 0;
+			padding-top: 24px;
+			margin-top: 8px;
+		}
+	}
+</style>

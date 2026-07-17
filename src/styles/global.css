@@ -198,6 +198,17 @@ main {
   max-width: 640px;
 }
 
+.page-header p a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--grey-3);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.page-header p a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
 .section {
   padding-bottom: 80px;
 }
