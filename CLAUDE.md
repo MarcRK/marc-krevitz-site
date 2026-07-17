@@ -126,15 +126,14 @@ PATH before running `npm run dev` — needed because `.claude/launch.json`'s
   `RATES_ARE_PUBLIC` is a final decision (`false`, on-request), not a TODO.
 - `src/pages/work.astro` — `GITHUB_URL` (`github.com/MarcRK`) and
   `LINKEDIN_URL` (`linkedin.com/in/marckrevitz`) are real.
+- `src/pages/contact.astro` — `FORMSPREE_ENDPOINT` is real
+  (`https://formspree.io/f/xzdneelj`). Notification email uses free
+  Cloudflare Email Routing (a @marckrevitz.com address forwarding to
+  Marc's Gmail), not Google Workspace — decided to avoid a recurring cost
+  for a portfolio site.
 
 ### Placeholder constants still awaiting Marc's real values
 
-- `src/pages/contact.astro` — `FORMSPREE_ENDPOINT`. Open question: Marc
-  wants the notification email to use marckrevitz.com rather than personal
-  Gmail — decide between paid Google Workspace vs. free Cloudflare Email
-  Routing (forwards a @marckrevitz.com address to an existing inbox) before
-  creating the Formspree account. See chat for Claude's explanation of why
-  Formspree was chosen at all.
 - `src/pages/work.astro` — `RESUME_URL` (needs `public/resume.pdf` added),
   and the skills line (marked `[DRAFT]` inline).
 - `src/data/testimonials.ts` — `furnitureTestimonials` and `chessTestimonials`
@@ -157,13 +156,11 @@ PATH before running `npm run dev` — needed because `.claude/launch.json`'s
   static assets, auto-deploying from `github.com/MarcRK/marc-krevitz-site`
   (`main` branch). Domain purchased through Cloudflare Registrar and
   attached as a custom domain on the Workers project.
-- No Formspree account yet — see the email-routing question above before
-  creating it. That's the last major infrastructure piece; everything else
-  remaining is real content (see above) and small design tweaks as Marc
-  reviews the live site.
+- All infrastructure is done: GitHub, Cloudflare deploy, domain, Formspree.
+  Everything remaining is real content (see above) and small design tweaks
+  as Marc reviews the live site.
 
 ## Not yet done (don't assume)
 
-- No Formspree account yet (see above). Note: Claude cannot create
-  accounts, enter payment details, or execute purchases — Marc does those
-  steps himself.
+- Infrastructure is fully wired up (see Live status above) — nothing left
+  there. Remaining work is content and content-driven page tweaks only.
