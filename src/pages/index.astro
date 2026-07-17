@@ -37,4 +37,66 @@ import Layout from "../layouts/Layout.astro";
 			<span class="go">Book a lesson →</span>
 		</a>
 	</section>
+
+	<section class="about-section" aria-label="About this site">
+		<a class="about-strip" href="/about">
+			<div class="about-strip-text">
+				<span class="mono">Meta</span>
+				<h2>About this site</h2>
+				<p>How this site was built, and what it's built with.</p>
+			</div>
+			<span class="go">Read more →</span>
+		</a>
+	</section>
 </Layout>
+
+<style>
+	.grid {
+		padding-bottom: 16px;
+	}
+
+	.about-section {
+		padding-bottom: 96px;
+	}
+
+	.about-strip {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		padding: 24px;
+		border: 1px solid var(--grey-3);
+		border-radius: var(--radius);
+		background: #FFFFFF;
+		transition: border-color 0.15s, transform 0.15s;
+	}
+
+	.about-strip:hover {
+		border-color: var(--accent);
+		transform: translateY(-2px);
+	}
+
+	.about-strip-text h2 {
+		font-size: 1.05rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		margin: 4px 0 4px;
+	}
+
+	.about-strip-text p {
+		font-size: 0.9rem;
+		color: var(--grey-1);
+	}
+
+	.about-strip .go {
+		font-size: 0.85rem;
+		color: var(--grey-2);
+		white-space: nowrap;
+		transition: color 0.15s;
+	}
+
+	.about-strip:hover .go {
+		color: var(--accent);
+	}
+</style>

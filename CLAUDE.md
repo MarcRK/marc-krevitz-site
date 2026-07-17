@@ -85,6 +85,11 @@ Extract header/nav/footer into a shared layout used by all pages.
   no code, no internal details. Plus a small projects section (this
   website itself is the first entry), skills line, resume download slot,
   GitHub + LinkedIn links.
+- **/about** — "About this site." Not in main nav; linked only via a
+  full-width strip on the homepage, directly below the bento grid. Meta
+  page explaining how the site was built (Astro, content collections,
+  Cloudflare, Formspree, Claude Code) with links out to each. Draft
+  copy — flag for Marc's review like any other new copy.
 - **/contact** — form with intent dropdown, in this order: Professional,
   Furniture, Tech, Chess Lessons, Other. ("Tech" added for Tech Projects —
   previously only Furniture/Chess Lessons/Professional/Other existed.)
