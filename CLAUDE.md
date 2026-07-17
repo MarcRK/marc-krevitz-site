@@ -67,29 +67,35 @@ Extract header/nav/footer into a shared layout used by all pages.
   framing — all four are still fully built out, just reordered.
 - **/ (home)** — index.html, converted. Footer has a contextual "Get in
   touch" link (see /contact below) on every page via the shared layout.
-- **/furniture** — project log (before/after photos, what was done, honest
-  take, short written posts) plus a SEPARATE reviews section. A few
+- **/furniture** — project log (before/after photos, product reviews,
+  client reviews, other thoughts) plus a SEPARATE reviews section. A few
   Facebook Marketplace review quotes as testimonials, not a full dump.
-- **/tech-projects** — "The Bench." Same log format: machine found, what
-  was wrong, what was fixed, outcome. Audio DIY builds as projects;
-  headphone/IEM reviews as posts.
-- **/chess** — service page, not a gallery. 5 years coaching, players of
-  all skill levels, how lessons work, lichess profile link, client
-  testimonials, rates section. Rates decision is final: **on-request**,
-  not published publicly. The "Book a lesson" CTA sits directly after the
-  "How lessons work" steps (not at the page bottom), styled larger
-  (`.btn-lg`) so it's easy to spot. → /contact with the chess intent
-  pre-selected via query param.
+- **/tech-projects** — "The Bench." Before/after project logs and other
+  thoughts/reviews. Audio DIY builds as projects; headphone/IEM reviews
+  as posts.
+- **/chess** — service page, not a gallery. Real bio (Marc's own text):
+  playing since 2017, coaching since 2021, contracted with Chess Wizards
+  and Togetherhood (both linked), K-12 and adults, all skill levels.
+  How lessons work, lichess profile link, client testimonials, rates
+  section. Rates decision is final: **on-request**, not published
+  publicly. The "Book a lesson" CTA sits directly after the "How lessons
+  work" steps (not at the page bottom), styled larger (`.btn-lg`) so it's
+  easy to spot. → /contact with the chess intent pre-selected via query
+  param.
 - **/work** — "Professional Work." Case studies (problem → what I built →
   result), anonymized where tied to prior employers: no company names,
   no code, no internal details. Plus a small projects section (this
-  website itself is the first entry), skills line, resume download slot,
-  GitHub + LinkedIn links.
+  website itself is the first entry, its card links to /about), skills
+  line, resume download slot, GitHub + LinkedIn links.
 - **/about** — "About this site." Not in main nav; linked only via a
-  full-width strip on the homepage, directly below the bento grid. Meta
-  page explaining how the site was built (Astro, content collections,
-  Cloudflare, Formspree, Claude Code) with links out to each. Draft
-  copy — flag for Marc's review like any other new copy.
+  full-width strip on the homepage (labeled "About", not "Meta"),
+  directly below the bento grid, and via the Work page's "This website"
+  card. Two-column layout on desktop (collapses to one column below
+  768px): prose blurb on the left with inline links, a "Built with"
+  link list (Astro, Cloudflare, Formspree, IBM Plex Sans, IBM Plex Mono)
+  in a right-side aside. Body copy is Marc's own final phrasing (not a
+  draft) — he deliberately left out any mention of Claude Code in this
+  version; don't re-add it without being asked.
 - **/contact** — form with intent dropdown, in this order: Professional,
   Furniture, Tech, Chess Lessons, Other. ("Tech" added for Tech Projects —
   previously only Furniture/Chess Lessons/Professional/Other existed.)
