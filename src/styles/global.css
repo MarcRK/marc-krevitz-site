@@ -246,7 +246,7 @@ main {
 }
 
 /* .info-card is the same shape as .post-card but for non-clickable
-   content — no hover treatment, so it doesn't look interactive. */
+   content. No hover treatment, so it doesn't look interactive. */
 .post-card:hover {
   border-color: var(--accent);
   transform: translateY(-2px);

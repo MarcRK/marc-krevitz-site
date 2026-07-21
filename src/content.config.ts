@@ -2,7 +2,7 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
-// Furniture project log — one Markdown file per refurbishment post.
+// Furniture project log. One Markdown file per refurbishment post.
 const furniture = defineCollection({
 	loader: glob({ base: "./src/content/furniture", pattern: "**/*.md" }),
 	schema: z.object({
@@ -22,7 +22,7 @@ const furniture = defineCollection({
 	}),
 });
 
-// Tech Projects ("The Bench") — refurbs and DIY audio builds.
+// Tech Projects ("The Bench"): refurbs and DIY audio builds.
 const techProjects = defineCollection({
 	loader: glob({ base: "./src/content/tech-projects", pattern: "**/*.md" }),
 	schema: z.object({
@@ -42,7 +42,7 @@ const techProjects = defineCollection({
 	}),
 });
 
-// Headphone / IEM reviews — posts, distinct from the project log above.
+// Headphone/IEM reviews. Posts, distinct from the project log above.
 const techReviews = defineCollection({
 	loader: glob({ base: "./src/content/tech-reviews", pattern: "**/*.md" }),
 	schema: z.object({
@@ -54,7 +54,7 @@ const techReviews = defineCollection({
 	}),
 });
 
-// Work case studies — anonymized problem / what I built / result writeups.
+// Work case studies. Anonymized problem/what I built/result writeups.
 const work = defineCollection({
 	loader: glob({ base: "./src/content/work", pattern: "**/*.md" }),
 	schema: z.object({
