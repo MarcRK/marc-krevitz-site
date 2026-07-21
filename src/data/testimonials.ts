@@ -43,6 +43,14 @@ export const furnitureTestimonials: Testimonial[] = [
 			"Great experience overall. Marc was very accommodating, responsive, and easy to coordinate with. The chair was exactly as described and pickup was smooth",
 		source: "Marketplace buyer",
 	},
+	{
+		quote: "Excellent seller. Great communication, easy to meet up with, item as described. Thank you for a good sale!",
+		source: "Marketplace buyer",
+	},
+	{
+		quote: "Very knowledgeable about office chairs. Easy transaction. Nice seller!",
+		source: "Marketplace buyer",
+	},
 ];
 
 export const chessTestimonials: Testimonial[] = [
@@ -54,6 +62,14 @@ export const chessTestimonials: Testimonial[] = [
 	{
 		quote:
 			"Marc was the best. Constructed a plan for me and was fine with any questions outside of sessions.",
+		source: "Chess student",
+	},
+	{
+		quote: "My favorite teacher ever",
+		source: "Chess student",
+	},
+	{
+		quote: "Went from 800 to 1300 and I'm happy with it.",
 		source: "Chess student",
 	},
 ];
