@@ -17,8 +17,8 @@ const posts = (
 		<p>Before/after project logs, product reviews, reviews from clients, and any other thoughts.</p>
 	</section>
 
-	<section class="section" aria-label="Projects">
-		<h2 class="section-heading">Projects</h2>
+	<section class="section" aria-label="Projects and reviews">
+		<h2 class="section-heading">Projects &amp; Reviews</h2>
 		<div class="post-list">
 			{posts.map((post) => (
 				<PostCard
@@ -31,8 +31,9 @@ const posts = (
 		</div>
 	</section>
 
-	<section class="section" aria-label="Reviews">
-		<h2 class="section-heading">Reviews</h2>
+	<section class="section" aria-label="What clients say">
+		<h2 class="section-heading">What clients say</h2>
 		<TestimonialList items={furnitureTestimonials} />
+		<p class="form-note">All reviews (Facebook Marketplace and chess coaching) have been anonymized.</p>
 	</section>
 </Layout>

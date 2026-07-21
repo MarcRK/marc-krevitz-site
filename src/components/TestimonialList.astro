@@ -8,11 +8,145 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<div class="testimonial-list">
-	{items.map((item) => (
-		<blockquote class="testimonial">
-			<p>“{item.quote}”</p>
-			<span class="mono">{item.source}</span>
-		</blockquote>
-	))}
+<div class="carousel" data-carousel>
+	<div class="carousel-track">
+		{items.map((item) => (
+			<blockquote class="testimonial">
+				<p>“{item.quote}”</p>
+				<span class="mono">{item.source}</span>
+			</blockquote>
+		))}
+	</div>
+	<div class="carousel-controls">
+		<button type="button" class="carousel-btn" data-prev aria-label="Previous review">←</button>
+		<span class="mono carousel-count" data-count></span>
+		<button type="button" class="carousel-btn" data-next aria-label="Next review">→</button>
+	</div>
 </div>
+
+<style>
+	.carousel {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.carousel-track {
+		display: flex;
+		gap: 16px;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scroll-behavior: smooth;
+		padding-bottom: 4px;
+	}
+
+	.carousel-track .testimonial {
+		flex: 0 0 min(320px, 85vw);
+		scroll-snap-align: start;
+	}
+
+	.carousel-controls {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
+
+	.carousel-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		border: 1px solid var(--grey-3);
+		border-radius: var(--radius);
+		background: #FFFFFF;
+		color: var(--ink);
+		cursor: pointer;
+		font-size: 1rem;
+		transition: border-color 0.15s, color 0.15s;
+	}
+
+	.carousel-btn:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+
+	.carousel-btn:disabled {
+		opacity: 0.35;
+		cursor: default;
+	}
+
+	.carousel-btn:disabled:hover {
+		border-color: var(--grey-3);
+		color: var(--ink);
+	}
+
+	.carousel-count {
+		font-variant-numeric: tabular-nums;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.carousel-track {
+			scroll-behavior: auto;
+		}
+	}
+</style>
+
+<script>
+	document.querySelectorAll(".carousel[data-carousel]").forEach((carousel) => {
+		const track = carousel.querySelector(".carousel-track");
+		const prevBtn = carousel.querySelector("[data-prev]");
+		const nextBtn = carousel.querySelector("[data-next]");
+		const countEl = carousel.querySelector("[data-count]");
+		if (!track || !prevBtn || !nextBtn) return;
+
+		const cards = Array.from(track.children);
+		const total = cards.length;
+
+		function currentIndex() {
+			const trackLeft = track.getBoundingClientRect().left;
+			let closest = 0;
+			let closestDist = Infinity;
+			cards.forEach((card, i) => {
+				const dist = Math.abs(card.getBoundingClientRect().left - trackLeft);
+				if (dist < closestDist) {
+					closestDist = dist;
+					closest = i;
+				}
+			});
+			return closest;
+		}
+
+		function update() {
+			const index = currentIndex();
+			if (countEl) countEl.textContent = `${index + 1} / ${total}`;
+			prevBtn.disabled = index === 0;
+			nextBtn.disabled = index === total - 1;
+		}
+
+		function scrollToIndex(index) {
+			const clamped = Math.max(0, Math.min(total - 1, index));
+			const card = cards[clamped];
+			if (card) {
+				const trackRect = track.getBoundingClientRect();
+				const cardRect = card.getBoundingClientRect();
+				const delta = cardRect.left - trackRect.left;
+				track.scrollTo({
+					left: track.scrollLeft + delta,
+					behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+				});
+			}
+		}
+
+		prevBtn.addEventListener("click", () => scrollToIndex(currentIndex() - 1));
+		nextBtn.addEventListener("click", () => scrollToIndex(currentIndex() + 1));
+
+		let scrollTimer;
+		track.addEventListener("scroll", () => {
+			clearTimeout(scrollTimer);
+			scrollTimer = setTimeout(update, 100);
+		});
+
+		update();
+	});
+</script>
