@@ -2,7 +2,7 @@
 title: "Review of the ProtoArc EC300: A Welcome Addition"
 date: 2026-07-21
 category: "Review"
-summary: "A detailed review of the ProtoArc EC300 office chair — shipping, assembly, features, and how it stacks up against higher-end chairs."
+summary: "A review of the ProtoArc EC300 Ergonomic Chair"
 draft: false
 ---
 

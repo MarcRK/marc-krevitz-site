@@ -49,7 +49,7 @@ export const chessTestimonials: Testimonial[] = [
 	{
 		quote:
 			"Super patient and clear! Was very instructive with students and got them very interested in the game.",
-		source: "Chess student",
+		source: "Mastery Schools Associate",
 	},
 	{
 		quote:

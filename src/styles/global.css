@@ -122,6 +122,13 @@ main {
 .hero .tagline {
   font-size: 1.15rem;
   color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.hero .tagline-aside {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--grey-2);
   margin-bottom: 16px;
 }
 
@@ -437,6 +444,17 @@ main {
   font-size: 0.85rem;
   color: var(--grey-2);
   margin-top: 16px;
+}
+
+.form-note a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--grey-3);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.form-note a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 /* ---------- Footer ---------- */

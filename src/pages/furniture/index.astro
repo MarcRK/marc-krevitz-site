@@ -8,6 +8,8 @@ import { furnitureTestimonials } from "../../data/testimonials";
 const posts = (
 	await getCollection("furniture", ({ data }) => import.meta.env.DEV || !data.draft)
 ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const MARKETPLACE_URL = "https://www.facebook.com/marketplace/profile/100004986188540/";
 ---
 
 <Layout title="Furniture — Marc Krevitz" description="Furniture refurbishment projects and honest reviews.">
@@ -35,5 +37,6 @@ const posts = (
 		<h2 class="section-heading">What clients say</h2>
 		<TestimonialList items={furnitureTestimonials} />
 		<p class="form-note">All reviews (Facebook Marketplace and chess coaching) have been anonymized.</p>
+		<p class="form-note"><a href={MARKETPLACE_URL}>View my Facebook Marketplace listings →</a></p>
 	</section>
 </Layout>
