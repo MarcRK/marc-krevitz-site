@@ -147,16 +147,15 @@ PATH before running `npm run dev` — needed because `.claude/launch.json`'s
 
 - `src/pages/work.astro` — `RESUME_URL` (needs `public/resume.pdf` added),
   and the skills line (marked `[DRAFT]` inline).
-- `src/data/testimonials.ts` — `furnitureTestimonials` and `chessTestimonials`
-  are single placeholder quotes; needs Marc's real Marketplace/student quotes.
 
 ### Real content still needed (don't invent — ask Marc for raw material)
 
-- Furniture: the Reddit refurbishment post to convert, one full review,
-  Marketplace testimonial quotes.
+- Furniture: two Reddit posts to convert (a Herman Miller Mirra refurb and
+  a ProtoArc EC300 review) — Claude can't fetch reddit.com directly
+  (blocked for both WebFetch and the browser tool), so Marc needs to
+  paste the raw text of each post into chat.
 - Tech Projects: custom headphones build write-up, Game Boy SP refurb
   (before/after + photos), iPod refurb (before/after + photos).
-- Chess: real student testimonials.
 - Work: real anonymized case studies, skills list, resume PDF.
 - No photos exist yet for any collection — `images` front-matter fields are
   optional and unused so far; photos go in `public/images/<collection>/`.
